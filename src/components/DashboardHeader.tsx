@@ -1,4 +1,5 @@
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -45,7 +46,13 @@ const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
           <FaExternalLinkSquareAlt />
           <span>Visitar</span>
         </ButtonSecondary>
-        <ButtonSecondary>
+        <ButtonSecondary
+          onClick={() => {
+            signOut().then(() => {
+              router.push("/");
+            });
+          }}
+        >
           <FaSignOutAlt />
           <span>Logout</span>
         </ButtonSecondary>

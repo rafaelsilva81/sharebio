@@ -1,6 +1,7 @@
 import React from "react";
 import { api } from "../utils/api";
 import clsx from "clsx";
+import { ButtonPrimary } from "./common/Buttons";
 
 const SlugCreationForm = () => {
   const [slug, setSlug] = React.useState("");
@@ -36,6 +37,7 @@ const SlugCreationForm = () => {
             className={clsx("rounded-md border-2 border-gray-300 p-2", {
               "border-red-400": slugExists,
             })}
+            required
             type="text"
             onChange={(e) => {
               setSlug(e.target.value);
@@ -51,8 +53,8 @@ const SlugCreationForm = () => {
           </span>
         )}
 
-        <button
-          className="mt-2 rounded-md bg-indigo-500 p-2 text-neutral-100"
+        <ButtonPrimary
+          className="mt-2"
           onClick={(e) => {
             e.preventDefault();
             createSlugMutation.mutateAsync({ slug });
@@ -60,7 +62,7 @@ const SlugCreationForm = () => {
           }}
         >
           Criar
-        </button>
+        </ButtonPrimary>
       </form>
     </main>
   );
