@@ -31,7 +31,7 @@ const ButtonSecondary = (props: PropsWithChildren<IButton>) => {
     <button
       onClick={onClick}
       className={`
-        flex items-center justify-center gap-1 rounded-sm bg-neutral-200 p-2 text-indigo-600
+        flex items-center justify-center gap-1 rounded-sm p-2 text-indigo-600
         transition
         ease-in-out
         hover:bg-neutral-300 active:bg-neutral-300

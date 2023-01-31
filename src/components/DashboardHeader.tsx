@@ -16,11 +16,12 @@ interface IDashboardHeader {
   sessionData: Session | null;
   url: string;
 }
+
 const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
   const router = useRouter();
 
   return (
-    <header className="flex w-full justify-between border bg-white p-3 px-6 shadow-md">
+    <header className="flex w-full justify-between border bg-white p-3  shadow-md md:px-6">
       <div className="flex items-center gap-2">
         <Image
           src={sessionData?.user.image || ""}
@@ -37,10 +38,9 @@ const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <LinkPageOptionsDialog />
         <ButtonSecondary
-          className="bg-white"
           onClick={() => {
             router.push(`/${url}`);
           }}
@@ -49,7 +49,6 @@ const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
           <span className="hidden md:block">Visitar</span>
         </ButtonSecondary>
         <ButtonSecondary
-          className="bg-white"
           onClick={() => {
             signOut({
               callbackUrl: "/",

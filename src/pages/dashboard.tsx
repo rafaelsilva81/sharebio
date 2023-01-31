@@ -13,6 +13,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import DashboardHeader from "../components/DashboardHeader";
+import Footer from "../components/Footer";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -62,6 +63,9 @@ const Dashboard = () => {
           <h1> TODO: Preview </h1>
         </section>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 
           {/* call to action */}
           <ButtonSecondary
-            className="mt-2 font-semibold"
+            className="mt-2 bg-neutral-200 font-semibold"
             onClick={() => signIn("auth0", { callbackUrl: "/dashboard" })}
           >
             Vamos lá!
