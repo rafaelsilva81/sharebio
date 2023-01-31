@@ -1,18 +1,37 @@
 import { Formik } from "formik";
+import { api } from "../../utils/api";
+import Loader from "../common/Loader";
 
 const OptionsForm = () => {
+  const {
+    data: linkPage,
+    isLoading,
+    refetch: refetchLinkPage,
+  } = api.link.getLinkPage.useQuery(undefined, {
+    refetchOnWindowFocus: false,
+  });
+
+  const updateLinkPageMutation = api.link.updateLinkPageOptions.useMutation({
+    onSuccess: () => {
+      refetchLinkPage();
+    },
+  });
+
+  if (isLoading || !linkPage) return <Loader />;
+
   return (
     <Formik
       initialValues={{
-        description: "",
-        backgroundColor: "#4338ca",
-        backgroundImage: "",
+        description: linkPage?.description || "",
+        backgroundColor: linkPage?.backgroundColor || "#4338ca",
+        backgroundImage: linkPage?.backgroundImage || "",
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        updateLinkPageMutation.mutate({
+          slug: linkPage?.slug,
+          ...values,
+        });
+        setSubmitting(false);
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (

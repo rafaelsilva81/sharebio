@@ -9,7 +9,7 @@ const LinkPageOptionsDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <ButtonSecondary className="bg-white">
+        <ButtonSecondary>
           <FaCog />
           <span className="hidden md:block">Opções</span>
         </ButtonSecondary>
