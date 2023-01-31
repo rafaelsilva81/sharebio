@@ -9,6 +9,13 @@ const createLinkSchema = z.object({
   icon: z.string(),
 });
 
+const updateLinkPageShema = z.object({
+  slug: z.string(),
+  description: z.string().optional(),
+  backgroundColor: z.string().optional(),
+  backgroundImage: z.string().optional(),
+});
+
 export const linkRouter = createTRPCRouter({
   getLinkPage: protectedProcedure.query(async ({ ctx }) => {
     const links = await ctx.prisma.linkPage.findFirst({
@@ -40,5 +47,20 @@ export const linkRouter = createTRPCRouter({
       });
 
       return newlink;
+    }),
+
+  updateLinkPageOptions: protectedProcedure
+    .input(updateLinkPageShema)
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.linkPage.update({
+        where: {
+          slug: input.slug,
+        },
+        data: {
+          description: input.description,
+          backgroundColor: input.backgroundColor,
+          backgroundImage: input.backgroundImage,
+        },
+      });
     }),
 });
