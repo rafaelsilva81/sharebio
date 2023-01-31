@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 interface IButton {
-  onClick?: (e: MouseEvent) => void;
+  onClick?: (e: any) => void;
   className?: string;
 }
 
@@ -10,9 +10,9 @@ const ButtonPrimary = (props: PropsWithChildren<IButton>) => {
 
   return (
     <button
-      onClick={(e) => onClick}
+      onClick={onClick}
       className={`
-        flex items-center justify-center gap-1 rounded-md bg-indigo-600 p-2 text-neutral-200
+        flex items-center justify-center gap-1 rounded-sm bg-indigo-600 p-2 text-neutral-200
         transition
         ease-in-out
         hover:bg-indigo-700 active:bg-indigo-800
@@ -29,9 +29,9 @@ const ButtonSecondary = (props: PropsWithChildren<IButton>) => {
 
   return (
     <button
-      onClick={(e) => onClick}
+      onClick={onClick}
       className={`
-        flex items-center justify-center gap-1 rounded-md bg-neutral-200 p-2 text-indigo-600
+        flex items-center justify-center gap-1 rounded-sm bg-neutral-200 p-2 text-indigo-600
         transition
         ease-in-out
         hover:bg-neutral-300 active:bg-neutral-300

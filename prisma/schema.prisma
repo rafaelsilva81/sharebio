@@ -15,13 +15,24 @@ datasource db {
 }
 
 model Link {
-    id     String  @id @default(cuid()) @map("_id")
-    url    String
-    clicks Int     @default(0)
-    icon   String?
-    title  String?
-    User   User?   @relation(fields: [userId], references: [id])
-    userId String?
+    id         String    @id @default(cuid()) @map("_id")
+    url        String
+    clicks     Int       @default(0)
+    icon       String?
+    title      String?
+    LinkPage   LinkPage? @relation(fields: [linkPageId], references: [id])
+    linkPageId String?
+}
+
+model LinkPage {
+    id              String  @id @default(cuid()) @map("_id")
+    links           Link[]
+    description     String?
+    slug            String  @unique
+    backgroundImage String?
+    backgroundColor String?
+    user            User?   @relation(fields: [userId], references: [id])
+    userId          String?
 }
 
 // Necessary for Next auth
@@ -52,22 +63,14 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid()) @map("_id")
+    id            String     @id @default(cuid()) @map("_id")
     name          String?
-    email         String?   @unique
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-    links         Link[]
-    slug          Slug?     @relation(fields: [url], references: [url])
-    url           String?
-}
-
-model Slug {
-    id   String @id @default(cuid()) @map("_id")
-    url  String @unique
-    User User[]
+    LinkPage      LinkPage[]
 }
 
 model VerificationToken {

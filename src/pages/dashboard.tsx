@@ -1,45 +1,60 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
-import { ButtonSecondary } from "../components/common/Buttons";
+import React, { useEffect } from "react";
+import { ButtonPrimary, ButtonSecondary } from "../components/common/Buttons";
 import Loader from "../components/common/Loader";
 import SlugCreationForm from "../components/SlugCreationForm";
 import { api } from "../utils/api";
-import { FaCopy, FaExternalLinkSquareAlt, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaCopy,
+  FaExternalLinkSquareAlt,
+  FaPlus,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import DashboardHeader from "../components/DashboardHeader";
 
 const Dashboard = () => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
-  const { data: slug, isLoading } = api.slug.getSlug.useQuery();
+  const { data: linkPage, isLoading } = api.link.getLinkPage.useQuery();
 
-  /* TODO: Loading screen */
-  if (status === "loading" || isLoading) return <Loader />;
+  useEffect(() => {
+    if (status === "unauthenticated" || !sessionData) {
+      router.push("/");
+    }
+  });
 
-  if (status === "unauthenticated" || !sessionData) {
-    router.push("/");
-    return <></>;
+  if (isLoading) {
+    return <Loader />;
   }
 
-  if (!slug) {
+  if (!linkPage?.slug) {
     return <SlugCreationForm />;
   }
 
   return (
-    <div className="min-w-screen flex min-h-screen flex-col gap-4 p-8">
+    <div className="min-w-screen flex min-h-screen flex-col gap-4">
       {/* Dashboard header (profile) */}
-      <DashboardHeader sessionData={sessionData} url={slug.url} />
+      <DashboardHeader sessionData={sessionData} url={linkPage.slug} />
 
       {/* Main content */}
-      <main className="flex flex-1 justify-between gap-4">
+      <main className="flex flex-1 flex-col justify-between gap-4 p-4 md:flex-row">
         {/* Slug and links */}
-        <section className="flex flex-1 flex-col gap-2">
-          <div className="flex w-full flex-col gap-1">
-            <div className="flex w-full items-center justify-center rounded-md bg-indigo-600 p-4 font-semibold text-white">
-              Seus Links
+        <section className="flex flex-1 flex-col gap-2 rounded-sm">
+          <ButtonPrimary>
+            <FaPlus /> Criar novo Link
+          </ButtonPrimary>
+
+          {/* Links */}
+          {linkPage.links?.map((link, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center gap-2 bg-indigo-600 p-2"
+            >
+              <span className="text-white">{link.title}</span>
             </div>
-          </div>
+          ))}
         </section>
 
         {/* Preview */}
