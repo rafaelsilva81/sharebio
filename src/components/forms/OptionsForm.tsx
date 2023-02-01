@@ -1,6 +1,8 @@
 import { Formik } from "formik";
 import { api } from "../../utils/api";
+import { toast } from "react-toastify";
 import Loader from "../common/Loader";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const OptionsForm = () => {
   const {
@@ -12,7 +14,8 @@ const OptionsForm = () => {
   });
 
   const updateLinkPageMutation = api.link.updateLinkPageOptions.useMutation({
-    onSuccess: () => {
+    onSettled: () => {
+      toast("Atualizado com sucesso!");
       refetchLinkPage();
     },
   });
@@ -92,11 +95,11 @@ const OptionsForm = () => {
           </div>
           <button
             className={`
-            mt-1 flex items-center justify-center gap-1 rounded-sm bg-indigo-600 p-2 text-neutral-200
-            transition ease-in-out
-            hover:bg-indigo-700 active:bg-indigo-800
-            disabled:cursor-not-allowed disabled:opacity-60
-            `}
+              mt-1 flex items-center justify-center gap-1 rounded-sm bg-indigo-600 p-2 text-neutral-200
+              transition ease-in-out
+              hover:bg-indigo-700 active:bg-indigo-800
+              disabled:cursor-not-allowed disabled:opacity-60
+              `}
             type="submit"
             disabled={isSubmitting}
           >

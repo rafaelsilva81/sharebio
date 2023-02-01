@@ -4,17 +4,19 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { FaPencilAlt, FaShare, FaTree, FaUserPlus } from "react-icons/fa";
 import { ButtonSecondary } from "../components/common/Buttons";
+import Loader from "../components/common/Loader";
 import Footer from "../components/Footer";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { data: sessionData } = useSession();
+  const { status } = useSession();
 
-  useEffect(() => {
-    if (sessionData) {
-      router.push("/dashboard");
-    }
-  }, [sessionData]);
+  if (status === "loading") return <Loader />;
+
+  if (status === "authenticated") {
+    router.push("/dashboard");
+    return <Loader />;
+  }
 
   return (
     <>

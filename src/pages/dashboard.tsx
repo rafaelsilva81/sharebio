@@ -14,19 +14,19 @@ import {
 } from "react-icons/fa";
 import DashboardHeader from "../components/DashboardHeader";
 import Footer from "../components/Footer";
+import NewLinkDialog from "../components/dialogs/NewLinkDialog";
 
 const Dashboard = () => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
   const { data: linkPage, isLoading } = api.link.getLinkPage.useQuery();
 
-  useEffect(() => {
-    if (status === "unauthenticated" || !sessionData) {
-      router.push("/");
-    }
-  });
+  if (status === "unauthenticated") {
+    router.push("/");
+    return <Loader />;
+  }
 
-  if (isLoading) {
+  if (isLoading || status === "loading") {
     return <Loader />;
   }
 
@@ -43,9 +43,7 @@ const Dashboard = () => {
       <main className="flex flex-1 flex-col justify-between gap-4 p-4 md:flex-row">
         {/* Slug and links */}
         <section className="flex flex-1 flex-col gap-2 rounded-sm">
-          <ButtonPrimary>
-            <FaPlus /> Criar novo Link
-          </ButtonPrimary>
+          <NewLinkDialog />
 
           {/* Links */}
           {linkPage.links?.map((link, index) => (
