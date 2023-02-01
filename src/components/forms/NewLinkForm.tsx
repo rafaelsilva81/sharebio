@@ -36,7 +36,7 @@ const NewLinkForm = () => {
       initialValues={{
         title: "",
         url: "",
-        icon: "",
+        icon: "FaLink",
       }}
       validate={(values) => {
         const errors: {
@@ -45,8 +45,22 @@ const NewLinkForm = () => {
           icon?: string;
         } = {};
         if (!values.title) errors.title = "Campo obrigatório";
+        if (values.title.length > 20)
+          errors.title = "Título muito longo (máximo: 30 caracteres)";
         if (!values.url) errors.url = "Campo obrigatório";
         if (!values.icon.includes("Fa")) errors.icon = "Campo obrigatório";
+        if (!values.url.includes("https"))
+          errors.url = "URL inválida (deve começar com https://)";
+        if (!values.url.includes("."))
+          errors.url = "URL inválida (deve conter um ponto)";
+        if (!values.url.includes("/"))
+          errors.url = "URL inválida (deve conter uma barra)";
+        if (values.url.includes(" "))
+          errors.url = "URL inválida (não pode conter espaços)";
+        if (!values.url.endsWith(".png" || ".jpg" || ".jpeg" || ".gif"))
+          errors.url =
+            "URL inválida (deve terminar com .png, .jpg, .jpeg ou .gif)";
+        return errors;
       }}
     >
       {({
