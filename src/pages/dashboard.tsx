@@ -15,6 +15,7 @@ import {
 import DashboardHeader from "../components/DashboardHeader";
 import Footer from "../components/Footer";
 import NewLinkDialog from "../components/dialogs/NewLinkDialog";
+import SocialLink from "../components/SocialLink";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -47,12 +48,7 @@ const Dashboard = () => {
 
           {/* Links */}
           {linkPage.links?.map((link, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center gap-2 bg-indigo-600 p-2"
-            >
-              <span className="text-white">{link.title}</span>
-            </div>
+            <SocialLink key={index} linkData={link} />
           ))}
         </section>
 
@@ -67,10 +63,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-/* const SelectedIcon = ({ name }: { name: string }) => {
-  const Icon = Icons[name as keyof typeof Icons] || Icons.FaLink;
-  return <Icon />;
-}; */
 
 export default Dashboard;
