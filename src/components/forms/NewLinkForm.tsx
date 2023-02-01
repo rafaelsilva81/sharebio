@@ -57,9 +57,6 @@ const NewLinkForm = () => {
           errors.url = "URL inválida (deve conter uma barra)";
         if (values.url.includes(" "))
           errors.url = "URL inválida (não pode conter espaços)";
-        if (!values.url.endsWith(".png" || ".jpg" || ".jpeg" || ".gif"))
-          errors.url =
-            "URL inválida (deve terminar com .png, .jpg, .jpeg ou .gif)";
         return errors;
       }}
     >
@@ -83,9 +80,8 @@ const NewLinkForm = () => {
               onBlur={handleBlur}
               required
             />
-            {errors.title && (
-              <span className="text-xs text-red-500">{errors.title}</span>
-            )}
+
+            <span className="text-xs text-red-500">{errors.title}</span>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -99,9 +95,8 @@ const NewLinkForm = () => {
               onBlur={handleBlur}
               required
             />
-            {errors.url && (
-              <span className="text-xs text-red-500">{errors.url}</span>
-            )}
+
+            <span className="text-xs text-red-500">{errors.url}</span>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -119,9 +114,8 @@ const NewLinkForm = () => {
                 handleChange({ target: { id: "icon", value: icon } });
               }}
             />
-            {errors.icon && (
-              <span className="text-xs text-red-500">{errors.icon}</span>
-            )}
+
+            <span className="text-xs text-red-500">{errors.icon}</span>
           </div>
 
           <button

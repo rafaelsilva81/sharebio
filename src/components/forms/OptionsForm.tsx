@@ -36,8 +36,43 @@ const OptionsForm = () => {
         });
         setSubmitting(false);
       }}
+      validate={(values) => {
+        const errors: {
+          description?: string;
+          backgroundColor?: string;
+          backgroundImage?: string;
+        } = {};
+
+        if (values.description.length > 240)
+          errors.description = "Descrição muito longa (máximo: 240 caracteres)";
+        if (
+          !values.backgroundImage.endsWith(
+            ".png" || ".jpg" || ".jpeg" || ".gif"
+          )
+        )
+          errors.backgroundImage =
+            "URL inválida (deve terminar com .png, .jpg, .jpeg ou .gif)";
+        if (!values.backgroundImage.includes("https"))
+          errors.backgroundImage = "URL inválida (deve começar com https://)";
+        if (!values.backgroundImage.includes("."))
+          errors.backgroundImage = "URL inválida (deve conter um ponto)";
+        if (!values.backgroundImage.includes("/"))
+          errors.backgroundImage = "URL inválida (deve conter uma barra)";
+        if (values.backgroundImage.includes(" "))
+          errors.backgroundImage = "URL inválida (não pode conter espaços)";
+        if (!values.backgroundColor.startsWith("#"))
+          errors.backgroundColor =
+            "Cor hexadecimal inválida (deve começar com #)";
+      }}
     >
-      {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+      {({
+        values,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           {/* about */}
           <div className="flex flex-col gap-2 rounded-sm bg-indigo-600 p-2">
@@ -53,6 +88,8 @@ const OptionsForm = () => {
               onBlur={handleBlur}
               maxLength={240}
             />
+
+            <span className="text-xs text-red-500">{errors.description}</span>
           </div>
 
           {/* bg image */}
@@ -68,6 +105,10 @@ const OptionsForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+
+            <span className="text-xs text-red-500">
+              {errors.backgroundImage}
+            </span>
           </div>
 
           {/* color */}
@@ -91,6 +132,9 @@ const OptionsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <span className="text-xs text-red-500">
+                {errors.backgroundColor}
+              </span>
             </div>
           </div>
           <button
