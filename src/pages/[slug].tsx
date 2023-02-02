@@ -1,17 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
 import Loader from "../components/common/Loader";
-import SelectedIcon from "../components/common/SelectedIcon";
 import LinkPage from "../components/LinkPage";
 import { api } from "../utils/api";
 
 const Page = () => {
   const router = useRouter();
   const { slug } = router.query;
-
-  const addClickMutation = api.link.addClick.useMutation();
 
   const {
     data: linkPage,
@@ -49,7 +44,7 @@ const Page = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content={process.env.NEXT_PUBLIC_BASE_URL + "/" + linkPage.slug}
+          content={"https://sharebio.vercel.app/" + linkPage.slug}
         />
       </Head>
       <div

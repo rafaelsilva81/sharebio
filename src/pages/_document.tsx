@@ -1,5 +1,6 @@
 import React from "react";
 import { Head, Html, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 const Document = () => {
   return (
@@ -40,10 +41,16 @@ const Document = () => {
         <meta name="author" content="@rafaelsilva81" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* SEO meta tags */}
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
       </Head>
       <body className="bg-neutral-200 text-gray-800 ">
         <Main />
         <NextScript />
+
+        {/* Analytics */}
       </body>
     </Html>
   );

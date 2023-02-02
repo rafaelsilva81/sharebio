@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent, MouseEvent } from "react";
 import { api } from "../utils/api";
 import clsx from "clsx";
 import { ButtonPrimary } from "./common/Buttons";

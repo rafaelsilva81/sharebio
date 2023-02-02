@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from "react";
+import React, { MouseEvent, PropsWithChildren } from "react";
 
 interface IButton {
-  onClick?: (e: any) => void;
+  onClick?: (event: MouseEvent) => void;
   className?: string;
 }
 
@@ -16,7 +16,7 @@ const ButtonPrimary = (props: PropsWithChildren<IButton>) => {
         transition
         ease-in-out
         hover:bg-indigo-700 active:bg-indigo-800
-        ${className}
+        ${className || ""}
       `}
     >
       {props.children}
@@ -35,7 +35,7 @@ const ButtonSecondary = (props: PropsWithChildren<IButton>) => {
         transition
         ease-in-out
         hover:bg-neutral-300 active:bg-neutral-300
-        ${className}
+        ${className || ""}
         `}
     >
       {props.children}

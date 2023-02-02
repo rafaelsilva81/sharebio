@@ -71,7 +71,7 @@ const Dashboard = () => {
               <div
                 className="flex w-full justify-center rounded-sm shadow-sm"
                 style={{
-                  background: `url(${linkPage.backgroundImage})`,
+                  background: `url(${linkPage.backgroundImage || ""})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundColor: linkPage.backgroundColor || "#4338ca",
