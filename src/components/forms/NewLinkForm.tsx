@@ -17,9 +17,11 @@ const NewLinkForm = () => {
   const createNewLinkMutation = api.link.addLink.useMutation({
     onSettled: () => {
       toast("Criado com sucesso!");
-      refetchLinkPage().then(() => {
-        window.location.reload();
-      });
+      refetchLinkPage()
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
     },
   });
 

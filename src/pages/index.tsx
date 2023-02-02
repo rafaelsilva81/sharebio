@@ -24,7 +24,7 @@ const Home: NextPage = () => {
   if (status === "loading") return <Loader />;
 
   if (status === "authenticated") {
-    router.push("/dashboard");
+    router.push("/dashboard").catch((err) => console.error(err));
     return <Loader />;
   }
 
@@ -84,7 +84,11 @@ const Home: NextPage = () => {
           {/* call to action */}
           <ButtonSecondary
             className="mt-2 bg-neutral-200 font-semibold"
-            onClick={() => signIn("auth0", { callbackUrl: "/dashboard" })}
+            onClick={() => {
+              signIn("auth0", { callbackUrl: "/dashboard" }).catch((err) =>
+                console.error(err)
+              );
+            }}
           >
             Vamos lá!
           </ButtonSecondary>

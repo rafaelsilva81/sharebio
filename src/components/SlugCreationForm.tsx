@@ -45,7 +45,9 @@ const SlugCreationForm = () => {
             type="text"
             onChange={(e) => {
               setSlug(e.target.value);
-              refetch();
+              refetch().catch((err) => {
+                console.log(err);
+              });
             }}
             placeholder="seulink"
           />

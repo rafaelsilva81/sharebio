@@ -13,7 +13,7 @@ const RemoveLinkDialog = ({ linkData }: { linkData: Link }) => {
   const deleteLinkMutation = api.link.deleteLink.useMutation({
     onSuccess: () => {
       toast("Removido com sucesso");
-      refetchLinks();
+      refetchLinks().catch((err) => console.log(err));
     },
     onError: (err) => {
       toast("Erro ao remover");

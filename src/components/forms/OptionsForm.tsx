@@ -16,7 +16,7 @@ const OptionsForm = () => {
   const updateLinkPageMutation = api.link.updateLinkPageOptions.useMutation({
     onSettled: () => {
       toast("Atualizado com sucesso!");
-      refetchLinkPage();
+      refetchLinkPage().catch((err) => console.log(err));
     },
   });
 

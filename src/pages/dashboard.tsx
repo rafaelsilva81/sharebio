@@ -16,7 +16,7 @@ const Dashboard = () => {
   const { data: linkPage, isLoading } = api.link.getPersonalLinkPage.useQuery();
 
   if (status === "unauthenticated") {
-    router.push("/");
+    router.push("/").catch((err) => console.error(err));
     return <Loader />;
   }
 

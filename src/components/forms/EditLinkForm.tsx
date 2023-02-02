@@ -18,7 +18,7 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
   const updateLinkMutation = api.link.updateLink.useMutation({
     onSuccess: () => {
       toast.success("Link atualizado com sucesso!");
-      refetchLinkPage();
+      refetchLinkPage().catch((err) => console.log(err));
     },
     onError: () => {
       toast.error("Erro ao atualizar link!");

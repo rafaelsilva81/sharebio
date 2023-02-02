@@ -32,7 +32,7 @@ const Page = () => {
           content={
             linkPage.description ||
             `
-          Página do Sharebio do usuário ${linkPage.user.name}
+          Página do Sharebio do usuário ${linkPage.user.name || ""}
         `
           }
         />
@@ -50,7 +50,7 @@ const Page = () => {
       <div
         className="min-w-screen flex min-h-screen items-center justify-center"
         style={{
-          background: `url(${linkPage.backgroundImage})`,
+          background: `url(${linkPage.backgroundImage || ""})})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundColor: linkPage.backgroundColor || "#4338ca",

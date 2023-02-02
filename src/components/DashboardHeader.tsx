@@ -52,6 +52,8 @@ const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
           onClick={() => {
             signOut({
               callbackUrl: "/",
+            }).catch((err) => {
+              console.log(err);
             });
           }}
         >
