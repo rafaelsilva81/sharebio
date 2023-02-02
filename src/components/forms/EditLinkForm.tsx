@@ -60,7 +60,7 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
         if (!values.url.includes("."))
           errors.url = "URL inválida (deve conter um ponto)";
         if (values.url.includes("mailto")) {
-          let emailRegex =
+          const emailRegex =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
           if (!values.url.match(emailRegex)) errors.url = "E-mail inválido()";
         }
