@@ -17,15 +17,7 @@ const LinkPage = ({
   };
   preview?: boolean;
 }) => {
-  const { refetch: refetchLinkPage } = api.link.getLinkPage.useQuery({
-    slug: linkPage.slug,
-  });
-
-  const addClickMutation = api.link.addClick.useMutation({
-    onSuccess: () => {
-      refetchLinkPage().catch((err) => console.log(err));
-    },
-  });
+  const addClickMutation = api.link.addClick.useMutation();
 
   return (
     <main className="flex min-h-screen max-w-sm flex-col gap-8 bg-gray-800/70 p-8 md:w-[500px] md:max-w-md">

@@ -71,10 +71,15 @@ const Dashboard = () => {
               <div
                 className="flex w-full justify-center rounded-sm shadow-sm"
                 style={{
-                  background: `url(${linkPage.backgroundImage || ""})`,
+                  background: `
+                  ${
+                    previewLinkPage.backgroundImage
+                      ? `url(${previewLinkPage.backgroundImage})`
+                      : previewLinkPage.backgroundColor || "#4338ca"
+                  }
+                  `,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  backgroundColor: linkPage.backgroundColor || "#4338ca",
                 }}
               >
                 <LinkPage linkPage={previewLinkPage} preview />

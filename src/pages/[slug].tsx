@@ -15,18 +15,23 @@ const Page = () => {
   } = api.link.getLinkPage.useQuery(
     { slug: slug as string },
     {
+      enabled: !!slug,
       refetchOnWindowFocus: false,
     }
   );
 
-  if (isLoading || isFetching || !linkPage || !slug) {
+  if (isLoading || isFetching) {
     return <Loader />;
+  }
+
+  if (!linkPage) {
+    return <div> 404 </div>;
   }
 
   return (
     <>
       <Head>
-        <title>{linkPage.slug + "- Sharebio"}</title>
+        <title>{linkPage.slug + " - Sharebio"}</title>
         <meta
           name="description"
           content={
@@ -50,7 +55,13 @@ const Page = () => {
       <div
         className="min-w-screen flex min-h-screen items-center justify-center"
         style={{
-          background: `url(${linkPage.backgroundImage || ""})`,
+          background: `
+          ${
+            linkPage.backgroundImage
+              ? `url(${linkPage.backgroundImage})`
+              : linkPage.backgroundColor || "#4338ca"
+          }
+          `,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundColor: linkPage.backgroundColor || "#4338ca",
