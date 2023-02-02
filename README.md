@@ -1,28 +1,30 @@
-# Create T3 App
+![logo](https://raw.githubusercontent.com/rafaelsilva81/sharebio/main/res/sharebio_logo.png)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
-## What's next? How do I make an app with this?
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=sharebio&style=for-the-badge)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### **https://sharebio.vercel.app/**
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+---
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Sobre o Projeto
 
-## Learn More
+Sharebio é uma plataforma **gratuita** para criar uma bio personalizada para ser compartilhada em suas redes sociais. Você pode criar uma bio personalizada com seu nome, foto, links para redes sociais, etc. e compartilhar com seus amigos ou em suas redes sociais como Instagram, Facebook, Twitter, etc.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+![login](https://github.com/rafaelsilva81/sharebio/blob/main/res/login.gif?raw=true)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+![creating_link](https://github.com/rafaelsilva81/sharebio/blob/main/res/makinglink.gif?raw=true)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+![customizing_page](https://github.com/rafaelsilva81/sharebio/blob/main/res/customizing.gif?raw=true)
 
-## How do I deploy this?
+---
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+**Desenvolvido por: [Rafael Silva](https://rafaeldev.me)**
+
+![author_badge](https://i.imgur.com/NIMuGrX.png)
