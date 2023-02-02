@@ -35,7 +35,7 @@ const LinkPage = ({
         </p>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         {linkPage.links?.map((link, index) => (
           <a
             key={index}
