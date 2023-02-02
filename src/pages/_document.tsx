@@ -51,6 +51,24 @@ const Document = () => {
         <NextScript />
 
         {/* Analytics */}
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KWJ1N1PN94"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-Q05VEGR2MZ');
+          `,
+          }}
+        />
       </body>
     </Html>
   );
