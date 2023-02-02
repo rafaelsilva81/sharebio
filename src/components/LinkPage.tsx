@@ -37,18 +37,18 @@ const LinkPage = ({
         {linkPage.links?.map((link, index) => (
           <a
             key={index}
-            href={link.url}
+            href={preview ? "#" : link.url}
             onClick={() => {
               addClickMutation.mutate({
                 linkId: link.id,
               });
             }}
-            target="_blank"
+            target={preview ? "" : "_blank"}
             rel="noreferrer"
             className="flex w-full items-center justify-center gap-2 rounded-md 
-          bg-gray-800/50 p-2 text-white 
-          hover:bg-gray-800/90 
-          active:bg-gray-900
+          bg-gray-200 p-2 text-gray-800 
+          hover:bg-gray-300 
+          active:bg-gray-400
             md:text-lg"
           >
             <SelectedIcon name={link.icon || ""} />
