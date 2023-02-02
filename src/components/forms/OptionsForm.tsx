@@ -9,7 +9,7 @@ const OptionsForm = () => {
     data: linkPage,
     isLoading,
     refetch: refetchLinkPage,
-  } = api.link.getLinkPage.useQuery(undefined, {
+  } = api.link.getPersonalLinkPage.useQuery(undefined, {
     refetchOnWindowFocus: false,
   });
 

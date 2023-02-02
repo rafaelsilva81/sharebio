@@ -3,6 +3,7 @@ import * as Popover from "@radix-ui/react-popover";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import SelectedIcon from "./common/SelectedIcon";
 import * as PossibleIcons from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
 const IconPicker = ({
   icon,
@@ -29,13 +30,21 @@ const IconPicker = ({
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content className="flex flex-col gap-2 border-neutral-200 bg-neutral-100 p-2 shadow-2xl">
-          <input
-            type="text"
-            className="rounded-xs flex w-full items-center bg-neutral-200 p-1 text-sm shadow-sm"
-            placeholder="Filtrar ícones"
-            defaultValue={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          />
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <input
+              type="text"
+              className="rounded-xs flex w-full items-center bg-neutral-200 p-1 text-sm shadow-sm"
+              placeholder="Filtrar ícones"
+              defaultValue={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+            <Popover.Close
+              className="text-gray-500 hover:text-red-500"
+              onClick={() => setOpen(false)}
+            >
+              <IoMdClose size={24} />
+            </Popover.Close>
+          </div>
 
           <ScrollArea.Root type="always">
             <ScrollArea.Viewport

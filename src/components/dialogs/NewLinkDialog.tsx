@@ -1,9 +1,6 @@
-import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ButtonSecondary } from "../common/Buttons";
-import { FaCog, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import OptionsForm from "../forms/OptionsForm";
 import NewLinkForm from "../forms/NewLinkForm";
 
 const NewLinkDialog = () => {
@@ -17,7 +14,7 @@ const NewLinkDialog = () => {
         hover:bg-indigo-700 active:bg-indigo-800"
       >
         <FaPlus />
-        <span className="hidden md:block">Criar novo Link</span>
+        <span className="md:text-md text-sm">Criar novo Link</span>
       </Dialog.Trigger>
 
       <Dialog.Portal>

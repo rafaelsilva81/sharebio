@@ -1,3 +1,4 @@
+import { Link } from "@prisma/client";
 import { Formik } from "formik";
 import React from "react";
 import { toast } from "react-toastify";
@@ -5,7 +6,7 @@ import { api } from "../../utils/api";
 import Loader from "../common/Loader";
 import IconPicker from "../IconPicker";
 
-const NewLinkForm = () => {
+const EditLinkForm = ({ linkData }: { linkData: Link }) => {
   const {
     data: linkPage,
     isLoading,
@@ -14,12 +15,13 @@ const NewLinkForm = () => {
     refetchOnWindowFocus: false,
   });
 
-  const createNewLinkMutation = api.link.addLink.useMutation({
-    onSettled: () => {
-      toast("Criado com sucesso!");
-      refetchLinkPage().then(() => {
-        window.location.reload();
-      });
+  const updateLinkMutation = api.link.updateLink.useMutation({
+    onSuccess: () => {
+      toast.success("Link atualizado com sucesso!");
+      refetchLinkPage();
+    },
+    onError: () => {
+      toast.error("Erro ao atualizar link!");
     },
   });
 
@@ -28,15 +30,15 @@ const NewLinkForm = () => {
   return (
     <Formik
       onSubmit={(values) => {
-        createNewLinkMutation.mutate({
-          slug: linkPage?.slug,
+        updateLinkMutation.mutate({
+          id: linkData.id,
           ...values,
         });
       }}
       initialValues={{
-        title: "",
-        url: "",
-        icon: "FaLink",
+        title: linkData.title || "",
+        url: linkData.url || "",
+        icon: linkData.icon || "FaLink",
       }}
       validate={(values) => {
         const errors: {
@@ -44,11 +46,8 @@ const NewLinkForm = () => {
           url?: string;
           icon?: string;
         } = {};
-        if (!values.title) errors.title = "Campo obrigatório";
         if (values.title.length > 20)
           errors.title = "Título muito longo (máximo: 30 caracteres)";
-        if (!values.url) errors.url = "Campo obrigatório";
-        if (!values.icon.includes("Fa")) errors.icon = "Campo obrigatório";
         if (!values.url.includes("https"))
           errors.url = "URL inválida (deve começar com https://)";
         if (!values.url.includes("."))
@@ -78,7 +77,6 @@ const NewLinkForm = () => {
               defaultValue={values.title}
               onChange={handleChange}
               onBlur={handleBlur}
-              required
             />
 
             <span className="text-xs text-red-500">{errors.title}</span>
@@ -93,7 +91,6 @@ const NewLinkForm = () => {
               defaultValue={values.url}
               onChange={handleChange}
               onBlur={handleBlur}
-              required
             />
 
             <span className="text-xs text-red-500">{errors.url}</span>
@@ -136,4 +133,4 @@ const NewLinkForm = () => {
   );
 };
 
-export default NewLinkForm;
+export default EditLinkForm;

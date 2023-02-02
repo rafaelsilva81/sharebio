@@ -1,14 +1,10 @@
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import {
-  FaCog,
-  FaCopy,
-  FaExternalLinkSquareAlt,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaExternalLinkSquareAlt, FaSignOutAlt } from "react-icons/fa";
 import { ButtonSecondary } from "./common/Buttons";
 import LinkPageOptionsDialog from "./dialogs/LinkPageOptionsDialog";
 
@@ -22,32 +18,36 @@ const DashboardHeader = ({ sessionData, url }: IDashboardHeader) => {
 
   return (
     <header className="flex w-full justify-between border bg-white p-3  shadow-md md:px-6">
-      <div className="flex items-center gap-2">
+      <div className="flex min-w-fit items-center gap-2">
         <Image
           src={sessionData?.user.image || ""}
-          className="w-6 rounded-full md:w-full"
+          className="rounded-full"
           alt="user"
           width={30}
           height={30}
         />
-        <div className="flex flex-col">
+        <div className="flex w-full flex-1 flex-col">
           <span className="text-xs"> Bem vindo, </span>
           <span className="w-40 truncate text-xs font-semibold md:w-full">
-            {sessionData?.user.name}
+            @{url}
           </span>
         </div>
       </div>
 
       <div className="flex items-center gap-2">
         <LinkPageOptionsDialog />
-        <ButtonSecondary
-          onClick={() => {
-            router.push(`/${url}`);
-          }}
+        <Link
+          className="flex items-center justify-center gap-1 rounded-sm p-2 text-indigo-600
+          transition
+          ease-in-out
+        hover:bg-neutral-300 active:bg-neutral-300"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <FaExternalLinkSquareAlt />
           <span className="hidden md:block">Visitar</span>
-        </ButtonSecondary>
+        </Link>
         <ButtonSecondary
           onClick={() => {
             signOut({

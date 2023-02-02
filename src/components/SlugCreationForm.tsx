@@ -14,7 +14,7 @@ const SlugCreationForm = () => {
   } = api.slug.checkSlug.useQuery({ slug }, { enabled: slug !== "" });
 
   const createSlugMutation = api.slug.createSlug.useMutation({
-    onSettled: () => {
+    onSuccess: () => {
       console.log("slug created");
       window.location.reload();
     },
@@ -25,7 +25,7 @@ const SlugCreationForm = () => {
 
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-main_gradient p-8">
-      <form className="flex flex-col gap-1 bg-neutral-100 p-8">
+      <form className="flex flex-col gap-1 rounded-sm bg-neutral-200 p-8">
         <h1 className="text-xl font-semibold">Calma aí!</h1>
 
         <span className="text-gray-800">
@@ -33,11 +33,14 @@ const SlugCreationForm = () => {
         </span>
 
         <div className="mt-2 flex items-center gap-1 text-sm">
-          <span className=" font-semibold text-gray-400">urldosite.com/</span>
+          <span className=" font-semibold text-gray-700">urldosite.com/</span>
           <input
-            className={clsx("border-2 border-gray-300 p-2", {
-              "border-red-400": slugExists,
-            })}
+            className={clsx(
+              "flex-1 rounded-sm border-2 border-gray-300 p-2 shadow-sm",
+              {
+                "border-red-400": slugExists,
+              }
+            )}
             required
             type="text"
             onChange={(e) => {
@@ -54,11 +57,16 @@ const SlugCreationForm = () => {
           </span>
         )}
 
+        <span className="mt-1 text-xs font-semibold text-indigo-500">
+          OBS: Esse link também será seu nome de usuário e não poderá ser
+          alterado.
+        </span>
+
         <ButtonPrimary
           className="mt-2"
           onClick={(e) => {
-            if (slug != "") {
-              e.preventDefault();
+            e.preventDefault();
+            if (slug != "" && !slugExists) {
               createSlugMutation.mutate({ slug });
             }
           }}

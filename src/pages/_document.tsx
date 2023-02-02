@@ -16,8 +16,10 @@ const Document = () => {
           rel="stylesheet"
         />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <meta name="author" content="@rafaelsilva81" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <body className="bg-neutral-200">
+      <body className="bg-neutral-200 text-gray-800">
         <Main />
         <NextScript />
       </body>

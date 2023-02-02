@@ -8,7 +8,7 @@ import { api } from "../../utils/api";
 import { toast } from "react-toastify";
 
 const RemoveLinkDialog = ({ linkData }: { linkData: Link }) => {
-  const { refetch: refetchLinks } = api.link.getLinkPage.useQuery();
+  const { refetch: refetchLinks } = api.link.getPersonalLinkPage.useQuery();
 
   const deleteLinkMutation = api.link.deleteLink.useMutation({
     onSuccess: () => {
