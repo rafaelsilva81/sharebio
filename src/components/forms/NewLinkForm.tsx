@@ -52,8 +52,8 @@ const NewLinkForm = () => {
         if (!values.url) errors.url = "Campo obrigatório";
         if (!values.icon.includes("Fa")) errors.icon = "Campo obrigatório";
         if (
-          !values.url.includes("https") ||
-          !values.url.includes("http") ||
+          !values.url.includes("https") &&
+          !values.url.includes("http") &&
           !values.url.includes("mailto")
         )
           errors.url = "URL inválida (deve começar com https, http ou mailto)";
