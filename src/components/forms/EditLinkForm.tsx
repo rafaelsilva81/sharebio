@@ -59,11 +59,6 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
           errors.url = "URL inválida (deve começar com https, http ou mailto)";
         if (!values.url.includes("."))
           errors.url = "URL inválida (deve conter um ponto)";
-        if (values.url.includes("mailto")) {
-          const emailRegex =
-            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-          if (!values.url.match(emailRegex)) errors.url = "E-mail inválido()";
-        }
         if (!values.url.includes("mailto") && !values.url.includes("/"))
           errors.url = "URL inválida (deve conter uma barra)";
         if (values.url.includes(" "))
