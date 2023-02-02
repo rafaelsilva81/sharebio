@@ -32,6 +32,14 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Sharebio - Compartilhe seus links sociais</title>
+        <meta
+          name="description"
+          content="Compartilhe seus links sociais de forma simples, rápida e gratuita!"
+        />
+        <meta
+          name="keywords"
+          content="Sharebio, Links, Redes Sociais, Instagram, Facebook, Twitter, TikTok, Linkedin, Youtube, Twitch, Discord, bio, linktree, bio page, mylinks, socialtree"
+        />
       </Head>
       <main className="flex h-screen w-screen flex-col-reverse items-center justify-center gap-2 bg-main_gradient text-white md:justify-between lg:flex-row">
         <div className="flex flex-1 flex-col gap-4 p-14">
@@ -40,9 +48,15 @@ const Home: NextPage = () => {
             <FaShare size={48} />
           </div>
 
-          <p className="text-xl tracking-tight">
-            Compartilhar seus links sociais nunca foi tão fácil! Você estará
-            apenas alguns cliques de deixar sua página mais completa.
+          <p className="text-lg tracking-tight">
+            Compartilhar seus links sociais nunca foi tão fácil! Crie sua conta
+            gratuitamente e compartilhe seus links em sua bio do Instagram,
+            Facebook, Twitter, TikTok, Linkedin, Youtube, Twitch, Discord, etc.
+          </p>
+
+          <p className="text-lg tracking-tight">
+            Tudo isso de forma simples, rápida e{" "}
+            <span className="font-semibold">gratuita!</span>
           </p>
 
           <ol className="text-md mt-4 flex flex-col gap-2 text-lg font-semibold tracking-tight md:text-xl">
@@ -63,7 +77,7 @@ const Home: NextPage = () => {
 
             <li className="flex items-center gap-1">
               <FaLink />
-              <span>Compartilhe seu ShareBio!</span>
+              <span>Compartilhe em suas redes sociais!</span>
             </li>
           </ol>
 
