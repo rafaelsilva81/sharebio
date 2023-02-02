@@ -46,8 +46,11 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
           url?: string;
           icon?: string;
         } = {};
+        if (!values.title) errors.title = "Campo obrigatório";
         if (values.title.length > 20)
           errors.title = "Título muito longo (máximo: 30 caracteres)";
+        if (!values.url) errors.url = "Campo obrigatório";
+        if (!values.icon.includes("Fa")) errors.icon = "Campo obrigatório";
         if (
           !values.url.includes("https") ||
           !values.url.includes("http") ||
@@ -56,7 +59,12 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
           errors.url = "URL inválida (deve começar com https, http ou mailto)";
         if (!values.url.includes("."))
           errors.url = "URL inválida (deve conter um ponto)";
-        if (!values.url.includes("/"))
+        if (values.url.includes("mailto")) {
+          let emailRegex =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+          if (!values.url.match(emailRegex)) errors.url = "E-mail inválido()";
+        }
+        if (!values.url.includes("mailto") && !values.url.includes("/"))
           errors.url = "URL inválida (deve conter uma barra)";
         if (values.url.includes(" "))
           errors.url = "URL inválida (não pode conter espaços)";
