@@ -33,6 +33,7 @@ export const authOptions: NextAuthOptions = {
       clientId: env.AUTH0_CLIENT,
       clientSecret: env.AUTH0_SECRET,
       issuer: env.AUTH0_ISSUER,
+      authorization: `https://${env.AUTH0_ISSUER}/authorize?response_type=code&prompt=login`,
     }),
   ],
 };

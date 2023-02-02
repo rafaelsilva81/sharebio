@@ -9,6 +9,13 @@ const createLinkSchema = z.object({
   icon: z.string(),
 });
 
+const updateLinkSchema = z.object({
+  id: z.string(),
+  url: z.string().optional(),
+  title: z.string().optional(),
+  icon: z.string().optional(),
+});
+
 const updateLinkPageShema = z.object({
   slug: z.string(),
   description: z.string().optional(),
@@ -17,7 +24,7 @@ const updateLinkPageShema = z.object({
 });
 
 export const linkRouter = createTRPCRouter({
-  getLinkPage: protectedProcedure.query(async ({ ctx }) => {
+  getPersonalLinkPage: protectedProcedure.query(async ({ ctx }) => {
     const links = await ctx.prisma.linkPage.findFirst({
       where: {
         userId: ctx.session.user.id,
@@ -38,7 +45,7 @@ export const linkRouter = createTRPCRouter({
           url: input.url,
           icon: input.icon,
           title: input.title,
-          LinkPage: {
+          linkPage: {
             connect: {
               slug: input.slug,
             },
@@ -70,6 +77,57 @@ export const linkRouter = createTRPCRouter({
       await ctx.prisma.link.delete({
         where: {
           id: input.id,
+        },
+      });
+    }),
+
+  updateLink: protectedProcedure
+    .input(updateLinkSchema)
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.link.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          url: input.url,
+          title: input.title,
+          icon: input.icon,
+        },
+      });
+    }),
+
+  getLinkPage: publicProcedure
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const links = await ctx.prisma.linkPage.findFirst({
+        where: {
+          slug: input.slug,
+        },
+        include: {
+          links: true,
+          user: {
+            select: {
+              name: true,
+              image: true,
+            },
+          },
+        },
+      });
+
+      return links;
+    }),
+
+  addClick: publicProcedure
+    .input(z.object({ linkId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.link.update({
+        where: {
+          id: input.linkId,
+        },
+        data: {
+          clicks: {
+            increment: 1,
+          },
         },
       });
     }),

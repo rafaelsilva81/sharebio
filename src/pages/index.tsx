@@ -1,8 +1,18 @@
 import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
+import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { FaPencilAlt, FaShare, FaTree, FaUserPlus } from "react-icons/fa";
+import {
+  FaLink,
+  FaPencilAlt,
+  FaPhone,
+  FaPlus,
+  FaShare,
+  FaTree,
+  FaUserPlus,
+} from "react-icons/fa";
 import { ButtonSecondary } from "../components/common/Buttons";
 import Loader from "../components/common/Loader";
 import Footer from "../components/Footer";
@@ -20,11 +30,14 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main className="flex h-screen w-screen items-center justify-between gap-2 bg-main_gradient p-12 text-white">
-        <div className="flex flex-1 flex-col gap-4">
+      <Head>
+        <title>Sharebio - Compartilhe seus links sociais</title>
+      </Head>
+      <main className="flex h-screen w-screen flex-col-reverse items-center justify-center gap-2 bg-main_gradient text-white md:justify-between lg:flex-row">
+        <div className="flex flex-1 flex-col gap-4 p-14">
           <div className="flex items-baseline gap-1">
-            <h1 className="text-5xl font-bold tracking-tighter">SocialTree</h1>
-            <FaTree size={48} />
+            <h1 className="text-5xl font-bold tracking-tighter">Sharebio</h1>
+            <FaShare size={48} />
           </div>
 
           <p className="text-xl tracking-tight">
@@ -32,20 +45,25 @@ const Home: NextPage = () => {
             apenas alguns cliques de deixar sua página mais completa.
           </p>
 
-          <ol className="mt-4 flex flex-col gap-1 text-xl font-semibold tracking-tight">
+          <ol className="text-md mt-4 flex flex-col gap-2 text-lg font-semibold tracking-tight md:text-xl">
             <li className="flex items-center gap-1">
-              <FaUserPlus />
+              <FaUserPlus size={20} />
               <span>Crie sua conta gratuitamente</span>
             </li>
 
             <li className="flex items-center gap-1">
               <FaPencilAlt />
-              <span>Customize sua página e adicione seus links</span>
+              <span>Customize sua página</span>
             </li>
 
             <li className="flex items-center gap-1">
-              <FaShare />
-              <span>Compartilhe seu SocialTree com quem quiser!</span>
+              <FaPlus />
+              <span>Adicione seus links</span>
+            </li>
+
+            <li className="flex items-center gap-1">
+              <FaLink />
+              <span>Compartilhe seu ShareBio!</span>
             </li>
           </ol>
 
@@ -58,9 +76,15 @@ const Home: NextPage = () => {
           </ButtonSecondary>
         </div>
 
-        <div className="flex flex-1 flex-col gap-2">
-          <h1> TODO </h1>
-        </div>
+        <div
+          className="
+          flex bg-[url('/home.jpg')] bg-cover
+          bg-center 
+          lg:min-h-screen
+          lg:min-w-[50%] lg:flex-1
+          
+        "
+        />
       </main>
 
       <Footer />
@@ -69,29 +93,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-/* const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={
-          sessionData ? () => void signOut() : () => void signIn("auth0")
-        }
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-}; */
