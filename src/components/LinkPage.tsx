@@ -17,7 +17,15 @@ const LinkPage = ({
   };
   preview?: boolean;
 }) => {
-  const addClickMutation = api.link.addClick.useMutation();
+  const { refetch: refetchLinkPage } = api.link.getLinkPage.useQuery({
+    slug: linkPage.slug,
+  });
+
+  const addClickMutation = api.link.addClick.useMutation({
+    onSuccess: () => {
+      refetchLinkPage().catch((err) => console.log(err));
+    },
+  });
 
   return (
     <main className="flex min-h-screen max-w-sm flex-col gap-8 bg-gray-800/70 p-8 md:w-[500px] md:max-w-md">
@@ -39,9 +47,11 @@ const LinkPage = ({
             key={index}
             href={preview ? "#" : link.url}
             onClick={() => {
-              addClickMutation.mutate({
-                linkId: link.id,
-              });
+              if (!preview) {
+                addClickMutation.mutate({
+                  linkId: link.id,
+                });
+              }
             }}
             target={preview ? "" : "_blank"}
             rel="noreferrer"
