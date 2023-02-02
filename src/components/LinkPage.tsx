@@ -30,7 +30,9 @@ const LinkPage = ({
           className="rounded-full"
         />
         <h1 className="text-xl font-bold text-white">@{linkPage.slug}</h1>
-        <p className="text-sm text-gray-300">{linkPage.description}</p>
+        <p className="text-center text-sm font-semibold text-white">
+          {linkPage.description}
+        </p>
       </div>
 
       <div className="flex flex-col gap-1">
