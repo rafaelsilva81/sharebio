@@ -48,8 +48,12 @@ const EditLinkForm = ({ linkData }: { linkData: Link }) => {
         } = {};
         if (values.title.length > 20)
           errors.title = "Título muito longo (máximo: 30 caracteres)";
-        if (!values.url.includes("https"))
-          errors.url = "URL inválida (deve começar com https://)";
+        if (
+          !values.url.includes("https") ||
+          !values.url.includes("http") ||
+          !values.url.includes("mailto")
+        )
+          errors.url = "URL inválida (deve começar com https, http ou mailto)";
         if (!values.url.includes("."))
           errors.url = "URL inválida (deve conter um ponto)";
         if (!values.url.includes("/"))
