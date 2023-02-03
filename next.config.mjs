@@ -21,6 +21,7 @@ const config = {
         hostname: "*.googleusercontent.com",
       },
     ],
+    domains: ["cdn.discordapp.com", "avatars.githubusercontent.com"],
   },
 };
 export default config;
